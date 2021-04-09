@@ -1,0 +1,23 @@
+{
+  "name": "iss_spotter-new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calvinchan87/iss_spotter-new.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calvinchan87/iss_spotter-new/issues"
+  },
+  "homepage": "https://github.com/calvinchan87/iss_spotter-new#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
