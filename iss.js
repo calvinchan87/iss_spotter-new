@@ -70,6 +70,36 @@ const fetchISSFlyOverTimes = function(coords, callback) {
   
 };
 
-module.exports = { fetchMyIP };
-module.exports = { fetchCoordsByIP };
-module.exports = { fetchISSFlyOverTimes };
+const nextISSTimesForMyLocation = function(callback) {
+  // empty for now
+  fetchMyIP((error, ip) => {
+    if (error) {
+      return callback(error, null);
+    }
+
+    fetchCoordsByIP(ip, (error, data) => {
+      if (error) {
+        return callback(error, null);
+      }
+
+      fetchISSFlyOverTimes(data, (error, times) => {
+        if (error) {
+          return callback(error, null);
+        }
+
+        callback(null, times);
+      });
+    });
+  });
+};
+
+// Remember that each of our three functions takes as first argument an error object
+// The first thing to check therefore in each callback is the presence of error.
+// If it is truthy, then call the callback and return from the function (no need to proceed to the next steps in our waterfall of callbacks)
+// As always, work incrementally. Leave things like date output formatting to the end
+// Speaking of which, once index.js has the array of flyover times, it can loop through the data objects and print out the string.
+
+// module.exports = { fetchMyIP };
+// module.exports = { fetchCoordsByIP };
+// module.exports = { fetchISSFlyOverTimes };
+module.exports = { nextISSTimesForMyLocation };
