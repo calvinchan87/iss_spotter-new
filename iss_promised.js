@@ -9,4 +9,15 @@ const fetchMyIP = function() {
   return request('https://api.ipify.org?format=json');
 };
 
-module.exports = { fetchMyIP };
+/* 
+ * Makes a request to freegeoip.app using the provided IP address, to get its geographical information (latitude/longitude)
+ * Input: JSON string containing the IP address
+ * Returns: Promise of request for lat/lon
+ */
+const fetchCoordsByIP = function(body) {
+  const ipAddress = JSON.parse(body).ip;
+  return request(`https://freegeoip.app/json/${ipAddress}`);
+};
+
+
+module.exports = { fetchMyIP, fetchCoordsByIP };
